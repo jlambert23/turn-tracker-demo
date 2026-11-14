@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turn Tracker · Live demo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">●</span><span>TURN <strong>TRACKER</strong></span></div>
+      <span class="top-note">INTERACTIVE PROTOTYPE <span class="top-note-divider">/</span> NO HARDWARE REQUIRED</span>
+    </header>
+
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <p class="eyebrow">THE TABLE IS YOURS</p>
+        <h1 id="title">Every turn,<br><em>in its place.</em></h1>
+        <p class="intro">Pick an order. Pass the turn. Call it a night. This browser demo runs the repository’s actual <code>turn_flow.py</code> in WebAssembly—not a JavaScript rewrite.</p>
+      </div>
+      <div class="mode-panel" aria-live="polite">
+        <div class="mode-kicker"><span class="pulse-dot" aria-hidden="true"></span><span id="engine-status">Loading Python engine…</span></div>
+        <p class="mode-label" id="mode-label">PLEASE WAIT</p>
+        <p class="mode-detail" id="mode-detail">Fetching Pyodide and turn_flow.py</p>
+      </div>
+    </section>
+
+    <section class="flow" aria-label="Game progress">
+      <div class="section-heading"><div><span class="section-index">01 / TURN ORDER</span><h2>At the table</h2></div><button type="button" id="add-puck" class="add-button" disabled>+ Add puck</button></div>
+      <p class="section-help" id="instruction">Wait for the Python engine to load.</p>
+      <div class="order-track" id="order-track" aria-live="polite"><span class="order-empty">No players registered yet</span></div>
+    </section>
+
+    <section class="pucks-section" aria-label="Virtual pucks">
+      <div class="section-heading"><div><span class="section-index">02 / VIRTUAL PUCKS</span><h2>Press to play</h2></div><span class="gesture-hint">TAP &amp; HOLD ARE SEPARATE INPUTS</span></div>
+      <div class="pucks" id="pucks"></div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="guide panel"><span class="section-index">HOW IT WORKS</span><ol><li><strong>Tap</strong> each puck once in your chosen order.</li><li><strong>Hold</strong> the first puck to start play.</li><li><strong>Tap</strong> the glowing puck to pass.</li><li><strong>Hold</strong> the first puck, then press it again to end.</li></ol></div>
+      <div class="activity panel"><div class="activity-title"><span class="section-index">EVENT LOG</span><span class="live-tag">LIVE</span></div><ol id="event-log" aria-live="polite"><li class="log-empty">Your moves will appear here.</li></ol></div>
+    </section>
+    <footer>PYTHON STATE MACHINE <span>·</span> BROWSER-SIDE WEBASSEMBLY <span>·</span> NO RADIO OR PHYSICAL LED SIMULATION</footer>
+  </main>
+</body>
+</html>
